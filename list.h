@@ -24,5 +24,8 @@ void list_insert(struct list* list, void* val);
 void list_remove(struct list* list, void* val, int (*cmp)(void* a, void* b));
 int list_position(struct list* list, void* val, int (*cmp)(void* a, void* b));
 void list_reverse(struct list* list);
+int list_is_empty(struct list* list);
+void* list_peek(struct list* list);
+void list_pop(struct list* list); 
 
 #endif

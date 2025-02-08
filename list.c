@@ -199,3 +199,37 @@ void list_reverse(struct list* list) {
     curr = next;
   }
 }
+
+/* 
+ * Returns 1 if the list is empty, otherwise returns 0.
+ */
+
+int list_is_empty(struct list* list) {
+	if (list->head == NULL) {
+		return 1;
+	} 
+	return 0;
+}
+
+/* 
+ * Returns the value of the head of the list
+ */
+
+void* list_peek(struct list* list) {
+	return list->head->val;
+}
+
+/* 
+ * Removes first element in the list
+ */
+
+void list_pop(struct list* list) {
+	if (list->head == NULL) {
+		return;
+	}
+	struct node* curr = list->head; 
+	struct node* next = curr->next;
+	free(curr);
+	list->head = next;
+	return;
+}

@@ -5,8 +5,8 @@
  * might need.  Also, don't forget to include your name and @oregonstate.edu
  * email address below.
  *
- * Name:
- * Email:
+ * Name: Oscar Abelanet
+ * Email: abelaneo@oregonstate.edu
  */
 
 #include <stdlib.h>
@@ -30,10 +30,9 @@ struct stack {
  * a pointer to it.
  */
 struct stack* stack_create() {
-	/*
-	 * FIXME:
-	 */
-	return NULL;
+	struct stack* new_stack = malloc(sizeof(struct stack));
+	new_stack->list = list_create();
+	return new_stack;
 }
 
 /*
@@ -46,9 +45,8 @@ struct stack* stack_create() {
  *   stack - the stack to be destroyed.  May not be NULL.
  */
 void stack_free(struct stack* stack) {
-	/*
-	 * FIXME:
-	 */
+	list_free(stack->list);
+	free(stack);
 	return;
 }
 
@@ -61,10 +59,10 @@ void stack_free(struct stack* stack) {
  *   stack - the stack whose emptiness is being questioned.  May not be NULL.
  */
 int stack_isempty(struct stack* stack) {
-	/*
-	 * FIXME:
-	 */
-	return 1;
+	if (stack->list == NULL || list_is_empty(stack->list)) {
+		return 1;
+	}	
+	return 0;
 }
 
 /*
@@ -78,9 +76,7 @@ int stack_isempty(struct stack* stack) {
  *     which means that a pointer of any type can be passed.
  */
 void stack_push(struct stack* stack, void* val) {
-	/*
-	 * FIXME:
-	 */
+	list_insert(stack->list, val);	
 	return;
 }
 
@@ -93,10 +89,7 @@ void stack_push(struct stack* stack, void* val) {
  *   stack - the stack from which to query the top value.  May not be NULL.
  */
 void* stack_top(struct stack* stack) {
-	/*
-	 * FIXME:
-	 */
-	return NULL;
+	return list_peek(stack->list);
 }
 
 /*
@@ -110,8 +103,7 @@ void* stack_top(struct stack* stack) {
  *   This function should return the value that was popped.
  */
 void* stack_pop(struct stack* stack) {
-	/*
-	 * FIXME:
-	 */
-	return NULL;
+	void* val = list_peek(stack->list);
+	list_pop(stack->list);
+	return val;
 }
